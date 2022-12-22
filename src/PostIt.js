@@ -3,22 +3,24 @@ import { Recordatorios } from './Recordatorios'
 
 export const PostIt = () => {
     const [listaPostIt, setListaPostIt] = useState([])
-    const [isChecked, setIsChecked] = useState(false)
+    const [isImportante, setIsImportante] = useState(false)
     const titulo = useRef()
     const descripcion = useRef()
 
     // console.log(listaPostIt)
 
     const agregar = () => {
+        const estilo = asignarEstilo(isImportante)
         const txt_titulo = titulo.current.value
         const txt_descripcion = descripcion.current.value
-        if (txt_titulo === '' || txt_descripcion === '') return
+
+        // if (txt_titulo === '' || txt_descripcion === '') return
 
         setListaPostIt((anterior_listaPostIt) => {
             const nuevoPostIt = {
                 titulo: txt_titulo,
                 descripcion: txt_descripcion,
-                importante: isChecked,
+                estilo: estilo,
                 eliminarPos: eliminarPost,
             }
 
@@ -26,7 +28,7 @@ export const PostIt = () => {
         })
         titulo.current.value = null
         descripcion.current.value = null
-        setIsChecked(false)
+        setIsImportante(false)
     }
 
     const eliminarPost = (index) => {
@@ -37,7 +39,16 @@ export const PostIt = () => {
     }
 
     const handleChecked = (event) => {
-        setIsChecked(event.target.checked)
+        setIsImportante(event.target.checked)
+    }
+
+    const asignarEstilo = (tipo) => {
+        const estilos = ['primer-estilo', 'segundo-estilo', 'tecer-estilo']
+        const estiloAplicado = estilos[Math.floor(Math.random() * estilos.length)]
+
+        return tipo
+            ? `recordatorios importante ${estiloAplicado}`
+            : `recordatorios no-importante ${estiloAplicado}`
     }
 
     return (
@@ -45,15 +56,11 @@ export const PostIt = () => {
             <div className="post-it">
                 <input ref={titulo} type="text" placeholder="Titulo"></input>
 
-                <input
-                    ref={descripcion}
-                    type="text"
-                    placeholder="Descripcion"
-                ></input>
+                <input ref={descripcion} type="text" placeholder="Descripcion"></input>
 
                 <input
                     type="checkbox"
-                    checked={isChecked}
+                    checked={isImportante}
                     onChange={handleChecked}
                 ></input>
 
@@ -63,11 +70,12 @@ export const PostIt = () => {
             </div>
 
             <div className="items-post">
-                {listaPostIt.map(({ titulo, descripcion, importante }) => (
+                {listaPostIt.map(({ titulo, descripcion, estilo }) => (
                     <Recordatorios
                         titulo={titulo}
                         descripcion={descripcion}
-                        clase={importante}
+                        estilo={estilo}
+                        // isInportante={importante}
                         funcionEliminar={eliminarPost}
                     />
                 ))}
