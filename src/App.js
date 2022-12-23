@@ -1,4 +1,4 @@
-import { PostIt } from './PostIt'
+import { PostIt } from './componenetes/PostIt'
 
 function App() {
     return (
