@@ -14,14 +14,13 @@ export const PostIt = () => {
         const txt_titulo = titulo.current.value
         const txt_descripcion = descripcion.current.value
 
-        // if (txt_titulo === '' || txt_descripcion === '') return
+        if (txt_descripcion === '') return
 
         setListaPostIt((anterior_listaPostIt) => {
             const nuevoPostIt = {
                 titulo: txt_titulo,
                 descripcion: txt_descripcion,
                 estilo: estilo,
-                eliminarPos: eliminarPost,
             }
 
             return [...anterior_listaPostIt, nuevoPostIt]
@@ -31,11 +30,10 @@ export const PostIt = () => {
         setIsImportante(false)
     }
 
-    const eliminarPost = (index) => {
-        const postIts = [...listaPostIt]
-        console.log(index)
-        postIts.splice(index, 1)
-        setListaPostIt(postIts)
+    const eliminarPost = (indice) => {
+        const nuevaLista = [...listaPostIt]
+        nuevaLista.splice(indice, 1)
+        setListaPostIt(nuevaLista)
     }
 
     const handleChecked = (event) => {
@@ -53,12 +51,15 @@ export const PostIt = () => {
 
     return (
         <>
-            <div className="post-it">
+            <div className="post-it container-md">
                 <input ref={titulo} type="text" placeholder="Titulo"></input>
 
                 <input ref={descripcion} type="text" placeholder="Descripcion"></input>
 
+                <span>Importante</span>
+
                 <input
+                    className="checkbox"
                     type="checkbox"
                     checked={isImportante}
                     onChange={handleChecked}
@@ -69,15 +70,19 @@ export const PostIt = () => {
                 </button>
             </div>
 
-            <div className="items-post">
-                {listaPostIt.map(({ titulo, descripcion, estilo }) => (
-                    <Recordatorios
-                        titulo={titulo}
-                        descripcion={descripcion}
-                        estilo={estilo}
-                        // isInportante={importante}
-                        funcionEliminar={eliminarPost}
-                    />
+            <div className="items-post container-md">
+                {listaPostIt.map(({ titulo, descripcion, estilo }, indice) => (
+                    <>
+                        {/* <h1>{indice}</h1> */}
+                        <Recordatorios
+                            indice={indice}
+                            titulo={titulo}
+                            descripcion={descripcion}
+                            estilo={estilo}
+                            // isInportante={importante}
+                            funcionEliminar={eliminarPost}
+                        />
+                    </>
                 ))}
             </div>
             {/* <Recordatorios descripcion="descripcion verga uwu" titulo="wolo" /> */}
