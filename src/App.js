@@ -17,8 +17,6 @@ function App() {
     const agregarPost = ({ titulo, descripcion, isImportante }) => {
         const estilo = asignarEstilo(isImportante)
 
-        if (descripcion === '') return
-
         const nuevoPostIt = {
             titulo: titulo,
             descripcion: descripcion,
