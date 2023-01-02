@@ -24,13 +24,6 @@ input {
     height: 1.7em;
 }
 
-button {
-    border-style: none;
-    border-radius: 0.2rem;
-    background-color: transparent;
-    color: rgb(142, 17, 35);
-}
-
 span {
     color: #fff;
 }
@@ -70,7 +63,7 @@ span {
 .items-post {
     /* border: solid 1px #fff;  */
     margin-top: 1em;
-    width: 80%;
+    width: 90%;
     height: 100%;
     display: flex;
     gap: 10px;
@@ -78,14 +71,14 @@ span {
     justify-content: center;
 }
 
-.primer-estilo {
+.primera-rotacion {
     transform: rotate(-4deg);
 }
-.segundo-estilo {
+.segunda-rotacion {
     transform: rotate(4deg);
 }
 
-.tercer-estilo {
+.tercera-rotacion {
     transform: rotate(4deg) translate(0, -10px);
 }
 
@@ -97,14 +90,24 @@ span {
     width: 6em;
     height: 6em;
     border: solid 1px #000;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    background-color: #fefdcd;
+
+    /* overflow-y: scroll; */
+}
+
+.title-nota {
+    text-transform: uppercase;
+    line-height: 1.6rem;
+}
+
+.descripcion-nota {
+    line-height: 1.5rem;
 }
 
 .importante {
     background-color: #ec7063;
-}
-
-.no-importante {
-    background-color: #fefdcd;
 }
 
 .content {
@@ -114,15 +117,31 @@ span {
     top: 15px;
 }
 
+.cerrar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    margin: 0.2rem;
+    position: relative;
+    line-height: 0;
+    height: 1.5rem;
+    width: 95%;
+}
+
 .btn-cerrar {
-    position: absolute;
-    right: 0.8rem;
+    border-style: none;
+    background: transparent;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    margin-right: 0.2rem;
+    font-size: 2rem;
+    line-height: 0;
+    height: 1.2rem;
+    width: 1.2rem;
 }
 
 .btn-agregar {
+    border-style: none;
     color: #fff;
     width: 8em;
     height: 1.7em;

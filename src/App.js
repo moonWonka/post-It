@@ -1,22 +1,23 @@
 import { useState } from 'react'
 import { FormularioPostIt } from './componenetes/FormularioPostIt'
 import { Recordatorios } from './componenetes/Recordatorios'
+import { nanoid } from 'nanoid'
 
 function App() {
     const [listaPostIt, setListaPostIt] = useState([])
 
-    const generarEstilo = () => {
-        const estilos = ['primer-estilo', 'segundo-estilo', 'tecer-estilo']
-        const estiloAplicado = estilos[Math.floor(Math.random() * estilos.length)]
-
-        return estiloAplicado
-    }
+    const ROTACIONES_POSIBLES = [
+        'primera-rotacion',
+        'segunda-rotacion',
+        'tecera-rotacion',
+    ]
 
     const asignarEstilo = (tipo) => {
-        const estiloAplicado = generarEstilo()
+        const rotacionAplicada =
+            ROTACIONES_POSIBLES[Math.floor(Math.random() * ROTACIONES_POSIBLES.length)]
         return tipo
-            ? `recordatorios importante ${estiloAplicado}`
-            : `recordatorios no-importante ${estiloAplicado}`
+            ? `recordatorios importante ${rotacionAplicada}`
+            : `recordatorios ${rotacionAplicada}`
     }
 
     const agregarPost = ({ titulo, descripcion, isImportante }) => {
@@ -26,15 +27,16 @@ function App() {
             titulo,
             descripcion,
             estilo,
+            id: nanoid(),
         }
 
         setListaPostIt([...listaPostIt, nuevoPostIt])
     }
 
-    const eliminarPost = (indice) => {
-        const nuevaLista = [...listaPostIt]
-        nuevaLista.splice(indice, 1)
-        setListaPostIt(nuevaLista)
+    const eliminarPost = (id) => {
+        setListaPostIt((listaPostItPrev) =>
+            listaPostItPrev.filter((nota) => nota.id !== id)
+        )
     }
 
     return (
@@ -45,16 +47,15 @@ function App() {
             <FormularioPostIt funcionAgregar={agregarPost} />
 
             <div className="items-post container-md">
-                {listaPostIt.map(({ titulo, descripcion, estilo }, indice) => (
-                    <>
-                        <Recordatorios
-                            indice={indice}
-                            titulo={titulo}
-                            descripcion={descripcion}
-                            estilo={estilo}
-                            funcionEliminar={eliminarPost}
-                        />
-                    </>
+                {listaPostIt.map(({ titulo, descripcion, estilo, id }) => (
+                    <Recordatorios
+                        key={id}
+                        id={id}
+                        titulo={titulo}
+                        descripcion={descripcion}
+                        estilo={estilo}
+                        funcionEliminar={eliminarPost}
+                    />
                 ))}
             </div>
         </div>
