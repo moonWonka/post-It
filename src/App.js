@@ -1,14 +1,19 @@
 import { useState } from 'react'
-import { Formulario } from './componenetes/Formulario'
+import { FormularioPostIt } from './componenetes/FormularioPostIt'
 import { Recordatorios } from './componenetes/Recordatorios'
 
 function App() {
     const [listaPostIt, setListaPostIt] = useState([])
 
-    const asignarEstilo = (tipo) => {
+    const generarEstilo = () => {
         const estilos = ['primer-estilo', 'segundo-estilo', 'tecer-estilo']
         const estiloAplicado = estilos[Math.floor(Math.random() * estilos.length)]
 
+        return estiloAplicado
+    }
+
+    const asignarEstilo = (tipo) => {
+        const estiloAplicado = generarEstilo()
         return tipo
             ? `recordatorios importante ${estiloAplicado}`
             : `recordatorios no-importante ${estiloAplicado}`
@@ -18,9 +23,9 @@ function App() {
         const estilo = asignarEstilo(isImportante)
 
         const nuevoPostIt = {
-            titulo: titulo,
-            descripcion: descripcion,
-            estilo: estilo,
+            titulo,
+            descripcion,
+            estilo,
         }
 
         setListaPostIt([...listaPostIt, nuevoPostIt])
@@ -37,7 +42,7 @@ function App() {
             <h1 id="title">POST IT SIMULATOR</h1>
             <br></br>
 
-            <Formulario funcionAgregar={agregarPost} />
+            <FormularioPostIt funcionAgregar={agregarPost} />
 
             <div className="items-post container-md">
                 {listaPostIt.map(({ titulo, descripcion, estilo }, indice) => (

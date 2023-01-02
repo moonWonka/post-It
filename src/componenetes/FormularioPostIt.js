@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 
-export const Formulario = ({ funcionAgregar }) => {
+export const FormularioPostIt = ({ funcionAgregar }) => {
     const [isImportante, setIsImportante] = useState(false)
     const titulo = useRef()
     const descripcion = useRef()
