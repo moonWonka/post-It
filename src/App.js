@@ -39,6 +39,11 @@ function App() {
         )
     }
 
+    const editarPost = (id) => {
+        const nota = listaPostIt.find((nota) => nota.id === id)
+        console.log(nota)
+    }
+
     return (
         <div className="container">
             <h1 id="title">POST IT SIMULATOR</h1>
@@ -55,6 +60,7 @@ function App() {
                         descripcion={descripcion}
                         estilo={estilo}
                         funcionEliminar={eliminarPost}
+                        funcionEditar={editarPost}
                     />
                 ))}
             </div>

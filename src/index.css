@@ -5,7 +5,7 @@
 }
 
 html {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 body {
@@ -22,6 +22,10 @@ input {
     text-align: center;
     padding: 0.3em;
     height: 1.7em;
+}
+
+.post-it input {
+    border-radius: 1rem;
 }
 
 span {
@@ -83,27 +87,61 @@ span {
 }
 
 .recordatorios {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 0.1rem;
     border-radius: 1em;
     font-size: 2rem;
-    position: relative;
     width: 6em;
     height: 6em;
     border: solid 1px #000;
-    word-wrap: break-word;
     overflow-x: hidden;
     background-color: #fefdcd;
 
     /* overflow-y: scroll; */
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
+    /* overflow-y: auto; */
+}
+
+.recordatorios::-webkit-scrollbar {
+    width: 0.25em;
+    background-color: transparent;
+}
+
+.recordatorios::-webkit-scrollbar-button {
+    background-color: transparent;
+}
+
+.recordatorios::-webkit-scrollbar-thumb {
+    background-color: #20232a;
+    border-radius: 0.5em;
+}
+
+.main-nota {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 98%;
+    text-align: center;
 }
 
 .title-nota {
+    width: 98%;
     text-transform: uppercase;
-    line-height: 1.6rem;
+    line-height: 2rem;
+    word-wrap: break-word;
+    text-decoration: underline;
 }
 
 .descripcion-nota {
     line-height: 1.5rem;
+    width: 98%;
+    word-wrap: break-word;
 }
 
 .importante {
@@ -123,7 +161,6 @@ span {
     align-items: center;
 
     margin: 0.2rem;
-    position: relative;
     line-height: 0;
     height: 1.5rem;
     width: 95%;
@@ -141,18 +178,43 @@ span {
 }
 
 .btn-agregar {
+    border-radius: 1rem;
     border-style: none;
     color: #fff;
     width: 8em;
     height: 1.7em;
-    border-radius: 5px;
     background-color: #20232a;
+}
+
+.btn-agregar:hover {
+    background-color: #642bd6;
+    border: #000 solid 1px;
+}
+
+.editar-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.btn-editar {
+    border-radius: 0.5em;
+    width: 3em;
+    border-style: none;
+    background-color: #20232a;
+    color: #fff;
+    margin-bottom: 0.5em;
+}
+
+.btn-editar:hover {
+    background-color: #642bd6;
+    border: #000 solid 1px;
 }
 
 .checkbox {
     width: 1em;
     height: 1em;
-    border-radius: 50%;
     border: solid 1px #000;
     background-color: #fff;
 }
