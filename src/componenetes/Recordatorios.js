@@ -20,7 +20,12 @@ export const Recordatorios = ({
                     <p className="descripcion-nota">{descripcion}</p>
                 </div>
                 <div className="editar-div">
-                    <button className="btn-editar" onClick={funcionEditar}>
+                    <button
+                        className="btn-editar"
+                        onClick={() => {
+                            funcionEditar(id)
+                        }}
+                    >
                         Editar
                     </button>
                 </div>
