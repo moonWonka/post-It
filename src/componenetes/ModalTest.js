@@ -29,8 +29,6 @@ export const ModalTest = ({ nota, modificarNotas, cerrarModal }) => {
             nuevoEstilo = nuevoEstilo + ' importante'
         }
 
-        console.log(nuevoEstilo)
-
         const notaModificada = {
             id: nota.id,
             estilo: nuevoEstilo,
@@ -45,6 +43,7 @@ export const ModalTest = ({ nota, modificarNotas, cerrarModal }) => {
     return (
         <div className="modal-form">
             <div className="modal-content">
+                <h1>Modal wonka</h1>
                 <div className="">
                     <button type="button" onClick={cerrarModal}>
                         Cerrar
