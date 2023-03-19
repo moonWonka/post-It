@@ -6,7 +6,6 @@ export const Recordatorios = ({
     funcionEliminar,
     funcionEditar,
 }) => {
-    // console.log(clase, claseImportante)
     return (
         <div className={estilo}>
             <div className="cerrar">

@@ -106,6 +106,10 @@ span {
     /* overflow-y: auto; */
 }
 
+.importante {
+    background-color: #ec7063;
+}
+
 .recordatorios::-webkit-scrollbar {
     width: 0.25em;
     background-color: transparent;
@@ -142,10 +146,6 @@ span {
     line-height: 1.5rem;
     width: 98%;
     word-wrap: break-word;
-}
-
-.importante {
-    background-color: #ec7063;
 }
 
 .content {

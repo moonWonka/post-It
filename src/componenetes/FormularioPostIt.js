@@ -15,11 +15,13 @@ export const FormularioPostIt = ({ funcionAgregar }) => {
         const txt_titulo = titulo.current.value
         const txt_descripcion = descripcion.current.value
 
-        funcionAgregar({
+        const postEditado = {
             titulo: txt_titulo,
             descripcion: txt_descripcion,
             isImportante: isImportante,
-        })
+        }
+
+        funcionAgregar(postEditado)
 
         // if (txt_descripcion === '') return
 

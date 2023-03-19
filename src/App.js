@@ -2,9 +2,12 @@ import { useState } from 'react'
 import { FormularioPostIt } from './componenetes/FormularioPostIt'
 import { Recordatorios } from './componenetes/Recordatorios'
 import { nanoid } from 'nanoid'
+import { ModalTest } from './componenetes/ModalTest'
 
 function App() {
+    const [mostrarModal, setMostrarModal] = useState(false)
     const [listaPostIt, setListaPostIt] = useState([])
+    const [notaActual, setNotaActual] = useState(null)
 
     const ROTACIONES_POSIBLES = [
         'primera-rotacion',
@@ -16,7 +19,7 @@ function App() {
         const rotacionAplicada =
             ROTACIONES_POSIBLES[Math.floor(Math.random() * ROTACIONES_POSIBLES.length)]
         return tipo
-            ? `recordatorios importante ${rotacionAplicada}`
+            ? `recordatorios ${rotacionAplicada} importante`
             : `recordatorios ${rotacionAplicada}`
     }
 
@@ -26,6 +29,7 @@ function App() {
         const nuevoPostIt = {
             titulo,
             descripcion,
+            isImportante,
             estilo,
             id: nanoid(),
         }
@@ -39,9 +43,26 @@ function App() {
         )
     }
 
-    const editarPost = (id) => {
+    const handleModal = () => {
+        setMostrarModal(!mostrarModal)
+    }
+
+    const mostrarModalEditar = (id) => {
         const nota = listaPostIt.find((nota) => nota.id === id)
         console.log(nota)
+        setNotaActual(nota)
+        handleModal()
+    }
+
+    const editarPost = (notaModificada) => {
+        setListaPostIt((listaPostItPrev) =>
+            listaPostItPrev.map((nota) =>
+                nota.id === notaModificada.id ? notaModificada : nota
+            )
+        )
+
+        handleModal()
+        setNotaActual(null)
     }
 
     return (
@@ -52,18 +73,25 @@ function App() {
             <FormularioPostIt funcionAgregar={agregarPost} />
 
             <div className="items-post container-md">
-                {listaPostIt.map(({ titulo, descripcion, estilo, id }) => (
+                {listaPostIt.map((tarea) => (
                     <Recordatorios
-                        key={id}
-                        id={id}
-                        titulo={titulo}
-                        descripcion={descripcion}
-                        estilo={estilo}
+                        key={tarea.id}
+                        id={tarea.id}
+                        titulo={tarea.titulo}
+                        descripcion={tarea.descripcion}
+                        estilo={tarea.estilo}
                         funcionEliminar={eliminarPost}
-                        funcionEditar={editarPost}
+                        funcionEditar={mostrarModalEditar}
                     />
                 ))}
             </div>
+            {mostrarModal && (
+                <ModalTest
+                    nota={notaActual}
+                    modificarNotas={editarPost}
+                    cerrarModal={handleModal}
+                />
+            )}
         </div>
     )
 }
