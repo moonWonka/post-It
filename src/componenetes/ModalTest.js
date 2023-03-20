@@ -42,18 +42,20 @@ export const ModalTest = ({ nota, modificarNotas, cerrarModal }) => {
 
     return (
         <div className="modal-form">
-            <div className="modal-content">
-                <h1>Modal wonka</h1>
-                <div className="">
+            <div className="contaier modal-content">
+                <div className="btn-cerrar">
                     <button type="button" onClick={cerrarModal}>
-                        Cerrar
+                        x
                     </button>
                 </div>
 
-                <h5 className="modal-title">Modal title</h5>
+                <h1 id="modal.tile">Editar Nota</h1>
+
+                <h5 className="modal-title">Ingrese datos</h5>
 
                 <form className="modal-formulario">
                     <input
+                        className="modal-formulario-input"
                         type="text"
                         placeholder={nota.titulo}
                         onChange={handleTitulo}
@@ -66,6 +68,7 @@ export const ModalTest = ({ nota, modificarNotas, cerrarModal }) => {
                         value={descripcion}
                     />
                     <input
+                        className="modal-check"
                         type="checkbox"
                         checked={isImportante}
                         onChange={handleChecked}
