@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30%;
+    width: 50%;
     height: auto;
     background-color: #642bd6;
     padding: 2rem;
@@ -51,7 +51,7 @@
 
 .modal-formulario-input {
     margin-top: 1em;
-    height: 2em;
+    height: 1.7em;
     border-radius: 0.5em;
     border: none;
     padding: 0.5em;
