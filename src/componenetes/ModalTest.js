@@ -43,8 +43,8 @@ export const ModalTest = ({ nota, modificarNotas, cerrarModal }) => {
     return (
         <div className="modal-form">
             <div className="contaier modal-content">
-                <div className="btn-cerrar">
-                    <button type="button" onClick={cerrarModal}>
+                <div>
+                    <button className="cerrar-modal" type="button" onClick={cerrarModal}>
                         x
                     </button>
                 </div>
@@ -53,7 +53,7 @@ export const ModalTest = ({ nota, modificarNotas, cerrarModal }) => {
 
                 <h5 className="modal-title">Ingrese datos</h5>
 
-                <form className="modal-formulario">
+                <form className="modal-formulario" onSubmit={handleFormularioModal}>
                     <input
                         className="modal-formulario-input"
                         type="text"
@@ -62,6 +62,7 @@ export const ModalTest = ({ nota, modificarNotas, cerrarModal }) => {
                         value={titulo}
                     />
                     <input
+                        className="modal-formulario-input"
                         type="text"
                         placeholder={nota.descripcion}
                         onChange={handleDescripcion}
@@ -73,8 +74,12 @@ export const ModalTest = ({ nota, modificarNotas, cerrarModal }) => {
                         checked={isImportante}
                         onChange={handleChecked}
                     />
-                    <button type="buttom" onClick={handleFormularioModal}>
+                    <button className="cloud-btn" type="submit">
                         Guardar
+                        {/* <img
+                            src="https://img.icons8.com/ios/50/000000/save.png"
+                            alt="save"
+                        /> */}
                     </button>
                 </form>
             </div>
